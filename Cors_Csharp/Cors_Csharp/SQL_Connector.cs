@@ -153,13 +153,15 @@ namespace Cors_Csharp
 
 
                 query = "INSERT INTO weather (datetime, temperature, precipitation) VALUES ('" + datetime_1 + "','" + temperature + "', '" + precipitation + "');";
+                Console.WriteLine(query);
                 // Insert to database
                 if (this.OpenConnection() == true)
+                {
                     try
                     {
                         MySqlCommand cmd_weather = new MySqlCommand(query, connection);
                         cmd_weather.ExecuteNonQuery();
-                        Console.WriteLine("Weather data inserted.")
+                        Console.WriteLine("Weather data inserted.");
                     }
                     catch (Exception ex)
                     {
@@ -167,6 +169,7 @@ namespace Cors_Csharp
                     }
 
                 this.CloseConnection();
+                }
             }
 
             reader = new StreamReader(File.OpenRead("input_data/steps_data.csv"));
@@ -182,20 +185,23 @@ namespace Cors_Csharp
 
                 query = "INSERT INTO steps (date, steps_amount) VALUES ('" + datetime_2 + "', '" + steps_amount + "');";
 
+                Console.WriteLine(query);
                 // Insert into database
                 if (this.OpenConnection() == true)
+                {
                     try
                     {
                         MySqlCommand cmd_steps = new MySqlCommand(query, connection);
                         cmd_steps.ExecuteNonQuery();
-                        Console.WriteLine("Steps data inserted.")
+                        Console.WriteLine("Steps data inserted.");
                     }
                     catch (Exception ex)
                     {
                         Console.WriteLine(ex);
                     }
 
-                this.CloseConnection();
+                    this.CloseConnection();
+                }
 
             }
 
