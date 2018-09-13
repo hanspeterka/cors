@@ -12,7 +12,8 @@ namespace Cors_Csharp
         {
             
             SQL_Connector Connector = new SQL_Connector();
-            Connector.Read();
+            Connector.Read("steps_amount", "steps");
+            Connector.InsertTestingDataAll();
             
             
 
