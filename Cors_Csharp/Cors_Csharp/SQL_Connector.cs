@@ -153,6 +153,7 @@ namespace Cors_Csharp
 
 
                 query = "INSERT INTO weather (datetime, temperature, precipitation) VALUES ('" + datetime_1 + "','" + temperature + "', '" + precipitation + "');";
+                Console.WriteLine(query);
                 // Insert to database
                 if (this.OpenConnection() == true)
                 {
@@ -167,8 +168,8 @@ namespace Cors_Csharp
                         Console.WriteLine(ex);
                     }
 
-                    this.CloseConnection();
-                }
+                this.CloseConnection();
+            }
             }
 
             reader = new StreamReader(File.OpenRead("input_data/steps_data.csv"));
@@ -184,6 +185,7 @@ namespace Cors_Csharp
 
                 query = "INSERT INTO steps (date, steps_amount) VALUES ('" + datetime_2 + "', '" + steps_amount + "');";
 
+                Console.WriteLine(query);
                 // Insert into database
                 if (this.OpenConnection() == true)
                 {
@@ -198,7 +200,7 @@ namespace Cors_Csharp
                         Console.WriteLine(ex);
                     }
 
-                    this.CloseConnection();
+                this.CloseConnection();
                 }
 
             }
