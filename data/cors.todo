@@ -1,0 +1,19 @@
+
+- input
+	+- get weather data
+		- https://www.meteoblue.com/en/weather/archive/export/prague_czech-republic_3067696?daterange=2018-09-06+to+2018-09-13&params=&params%5B%5D=11%3B2+m+above+gnd&params%5B%5D=661%3Bsfc&utc_offset=2&aggregation=hourly&temperatureunit=CELSIUS&windspeedunit=KILOMETER_PER_HOUR
+
+	- database
+
+	+- get fitness data
+		- https://takeout.google.com/settings/takeout
+
+	- database 
+
+	
+
+- calculations
+	- 
+
+- output
+	- 
