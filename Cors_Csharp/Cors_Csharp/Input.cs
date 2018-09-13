@@ -1,32 +1,24 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-// using DateTime;
-// using Microsoft.VisualBasic;
-// using Microsoft.VisualBasic.FileIO;
-
-// using MySQL;
 
 namespace Cors_Csharp
 {
     class Input
     {
+
+        // static void Main()
+        // {
+        //     InputMain();
+        // }
+
         static void InputMain()
         {
-            // Read weater data
-            var reader = new StreamReader(File.OpenRead("input_data/weather_data.csv"));
-            // List<string> searchList = new List<string>();
+            string[] line_array = new string[] {""};
+            string sql_insert="";
 
-            // var line = (dynamic)null;
-            string[] line_array = new string[] { "" };
-            string sql_insert = "";
-
-
-            while (!reader.EndOfStream)
+        	// Read weater data
+        	var reader = new StreamReader(File.OpenRead("input_data/weather_data.csv"));
+            while(!reader.EndOfStream)
             {
                 line_array = reader.ReadLine().Split(';');
 
@@ -53,15 +45,13 @@ namespace Cors_Csharp
 
                 sql_insert = "INSERT INTO weather (datetime, temperature, precipitation) VALUES ('" + datetime_1 + "','" + temperature + "', '" + precipitation + "');";
 
-                // Console.WriteLine(sql_insert);
+                Console.WriteLine(sql_insert);
                 // Insert to database
             }
 
             reader = new StreamReader(File.OpenRead("input_data/steps_data.csv"));
-            // List<string> searchList = new List<string>();
 
-
-            while (!reader.EndOfStream)
+            while(!reader.EndOfStream)
             {
                 line_array = reader.ReadLine().Split(',');
 
@@ -70,10 +60,12 @@ namespace Cors_Csharp
 
                 DateTime datetime_2 = Convert.ToDateTime(line_array[0]).Date;
 
-
-                sql_insert = "INSERT INTO steps (date, steps_amount) VALUES ('" + datetime_2.ToString("yyyy-mm-dd") + "', '" + steps_amount + "');";
+                sql_insert = "INSERT INTO steps (date, steps_amount) VALUES ('" + datetime_2 + "', '" + steps_amount + "');";
 
                 Console.WriteLine(sql_insert);
+                // Insert into database
+
+
             }
         }
     }
