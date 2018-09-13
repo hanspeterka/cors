@@ -4,8 +4,12 @@ using System;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+// using DateTime;
 // using Microsoft.VisualBasic;
-// using Microsoft.VisualBasic.FileIO;	
+// using Microsoft.VisualBasic.FileIO;
+
+// using MySQL;
 
 namespace Cors_Csharp
 {
@@ -15,65 +19,65 @@ namespace Cors_Csharp
         {
         	// Read weater data
         	var reader = new StreamReader(File.OpenRead("input_data/weather_data.csv"));
-            List<string> searchList = new List<string>();
+            // List<string> searchList = new List<string>();
+
+            // var line = (dynamic)null;
+            string[] line_array = new string[] {""};
+            string sql_insert="";
+
 
             while(!reader.EndOfStream)
             {
-                var line = reader.ReadLine();
-                searchList.Add(line);
-
-                string[] line_array = new string[] {""};
-                line_array = line.Split(';');
-
+                line_array = reader.ReadLine().Split(';');
 
                 int year = 0;
-                if (!Int32.TryParse(line_array[0], out year)){
-
-                	Console.WriteLine("y");
-                	continue;
-                }
+                if (!Int32.TryParse(line_array[0], out year)){continue;}
 
                 int month = 0;
-                if (! Int32.TryParse(line_array[1], out month)){
-                	Console.WriteLine("m");
-                	continue;
-                } 
+                if (! Int32.TryParse(line_array[1], out month)){continue;}
 
                 int day = 0;
-                if (! Int32.TryParse(line_array[2], out day)){
-                	Console.WriteLine("d");
-                	continue;
-                }                
+                if (! Int32.TryParse(line_array[2], out day)){continue;}
 
                 int hour = 0;
-                if (! Int32.TryParse(line_array[3], out hour)){
-                	Console.WriteLine("h");
-                	continue;
-                }   
+                if (! Int32.TryParse(line_array[3], out hour)){continue;}
+
+                DateTime datetime_1 = new DateTime(year, month, day, hour, 0, 0, 0);
 
                 float temperature = 0;
-                if (! Int32.TryParse(line_array[5], out temperature)){
-                	Console.WriteLine("t");
-                	continue;
-                }      
+                if (! float.TryParse(line_array[5], out temperature)){continue;}
 
                 float precipitation = 0;
-                if (! Int32.TryParse(line_array[6], out precipitation)){
-                	Console.WriteLine("p");
-                	continue;
-                }                                
-                // int hour = line_array[3];
+                if (! float.TryParse(line_array[6], out precipitation)){continue;}
 
-                // int temperature = line_array[5]; 
-                // int precipitation = line_array[6]; 
 
-                // Console.WriteLine(System.Convert.ToString(year));
+                sql_insert ="INSERT INTO weather (datetime, temperature, precipitation) VALUES ('"+datetime_1+"','"+temperature+"', '"+precipitation+"');";
+
+                // Console.WriteLine(sql_insert);
+                // Insert to database
             }
 
-        	Console.WriteLine("Hello world");
-        	Console.ReadKey();
+            reader = new StreamReader(File.OpenRead("input_data/steps_data.csv"));
+            // List<string> searchList = new List<string>();
 
+
+            while(!reader.EndOfStream)
+            {
+                line_array = reader.ReadLine().Split(',');
+
+                int steps_amount = 0;
+                if (! Int32.TryParse(line_array[13], out steps_amount)){continue;}
+
+                DateTime datetime_2 = Convert.ToDateTime(line_array[0]).Date;
+
+
+                sql_insert ="INSERT INTO steps (date, steps_amount) VALUES ('"+datetime_2.ToString("yyyy-mm-dd")+"', '"+steps_amount+"');";
+
+                Console.WriteLine(sql_insert);
+            }
         }
     }
 }
+
+
 
