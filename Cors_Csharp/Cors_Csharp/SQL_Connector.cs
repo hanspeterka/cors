@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
@@ -92,12 +93,13 @@ namespace Cors_Csharp
             }
         }
 
+          
 
-        //Insert statement
-        public void Read()
+        //Read statement
+        public void Read(string columnName, string tableName)
         {
-            string query = "SELECT MAX(steps_amount) FROM steps";
-            int value = 0;
+            string query = "SELECT (" + columnName +") FROM " + tableName;
+            List<float> list = new List<float>();
 
             if (this.OpenConnection() == true)
             {
@@ -106,9 +108,9 @@ namespace Cors_Csharp
 
                 while (dataReader.Read())
                 {
-                    value = dataReader.GetInt16(0);
-                    Console.WriteLine(value);
-                    
+                    list.Add(dataReader.GetFloat(0));
+                   
+
                 }
                           
                 
