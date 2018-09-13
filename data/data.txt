@@ -1,1 +1,6 @@
 connection string: mysql://t2z7d0zkf4b9m6wu:rdk1h2wz1d5eishy@b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com:3306/eqxcz2kk2ha68vfu
+
+hostname: b8rg15mwxwynuk9q.chr7pe7iynqr.eu-west-1.rds.amazonaws.com
+username: t2z7d0zkf4b9m6wu
+password: rdk1h2wz1d5eishy
+default_schema: eqxcz2kk2ha68vfu
